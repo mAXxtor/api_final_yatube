@@ -30,6 +30,9 @@ class Post(models.Model):
         default=None
     )
 
+    class Meta:
+        ordering = ('-pub_date',)
+
     def __str__(self):
         return (f'Author - "{self.author}"; group - "{self.group}" '
                 f'text - "{self.text[:15]}";')
@@ -44,6 +47,9 @@ class Comment(models.Model):
     created = models.DateTimeField(
         'Дата добавления', auto_now_add=True, db_index=True)
 
+    class Meta:
+        ordering = ('-created',)
+
 
 class Follow(models.Model):
     user = models.ForeignKey(
@@ -55,7 +61,7 @@ class Follow(models.Model):
         constraints = [
             models.UniqueConstraint(fields=['user', 'following'],
                                     name='unique_follow'),
-            models.CheckConstraint(check=~models.Q(user=models.F('user')),
+            models.CheckConstraint(check=~models.Q(following=models.F('user')),
                                    name='prevent_self_follow')
         ]
 
