@@ -7,7 +7,7 @@ API для социальной сети, в которой пользовате
 
 ## Технологии
 Python 3.7.9
-Django 3.2.16
+Django 2.2.16
 Django REST Framework 3.12.4
 Django REST Framework simplejwt 4.7.2
 
